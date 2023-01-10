@@ -5,7 +5,7 @@ interface TaskAction<T>{
 }
 
 public class Task<T> implements Comparable<Task<T>> , Callable<T> {
-    private TaskType taskType;
+    private TaskType taskType = TaskType.OTHER;
     private TaskAction<T> action;
 
     public Task(TaskAction<T> operation, TaskType taskType) {
@@ -28,6 +28,10 @@ public class Task<T> implements Comparable<Task<T>> , Callable<T> {
 
     public int getPriority() {
         return taskType.getPriorityValue();
+    }
+
+    public void setType(TaskType type){
+        this.taskType = type;
     }
 
     @Override

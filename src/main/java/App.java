@@ -1,3 +1,6 @@
+import java.lang.invoke.CallSite;
+import java.util.concurrent.Callable;
+
 public class App {
     public static void main(String[] args) {
         Ex2_1 ex = new Ex2_1();
@@ -45,9 +48,19 @@ public class App {
             TaskType.COMPUTATIONAL
         );    
 
+        Callable c = new Callable<Integer>() {
+            @Override
+            public Integer call(){
+                System.out.println("hello1.1");
+                return 0;
+            }
+        };
+
         exx.submit(t1);
+        System.out.println("max : " + exx.getCurrentMax());
         exx.submit(t2);
         exx.submit(t3);
+        System.out.println("max : " + exx.getCurrentMax());
         exx.Close();
         ex.Close();
     }
